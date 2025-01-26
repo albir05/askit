@@ -1,0 +1,54 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+         <div class="col-md-4 shadow mt-3 p-4 mx-auto">
+            <h2 class="text-center">Registration</h2>
+            {% if errmsg %}
+              <div class="alert alert-danger">
+                {{errmsg}}
+              </div>
+            {% endif %}
+            <form method="POST" action="/signup">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="input1" class="form-label1"><strong>Username:</strong></label>
+                    <input type="email"name="uname" class="form-control" id="input1" placeholder="Enter username">  
+                  </div><!--username ends-->
+                  
+                  <div class="mb-3">
+                    <label for="input2" class="form-label1"><strong>Password:</strong></label>
+                    <input type="password" name="upass" class="form-control" id="input2" placeholder="Enter password">   
+                  </div><!--Password ends-->
+                 
+                  <div class="mb-3">
+                    <label for="input3" class="form-label1"><strong>Confirm Password:</strong></label>
+                    <input type="password" name="ucpass" class="form-control" id="input3" placeholder="Retype password">   
+                  </div><!--Confirm Password ends-->
+                  
+                  <div class="mb-3">
+                    <input type="submit" class="btn btn-danger" value="Signup">   
+                    already User? <a href="/login" style="text-decoration:none;">Login</a>
+                </div><!--Password ends-->
+                {% if success %}
+                <div class="alert alert-success">
+                  {{success}}
+                </div>
+              {% endif %} 
+            </form>
+         </div>
+           
+        </div>
+    </div>
+    
+
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>    
+</body>
+</html>
